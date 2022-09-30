@@ -8,6 +8,8 @@ contract TasksContract {
 
   uint256 public id = 0;
 
+  event TaskToggleDone(uint256 id, bool done);
+
   struct Task {
     uint256 id;
     string title;
@@ -27,5 +29,6 @@ contract TasksContract {
     Task memory _tasks = tasks[_id];
     _tasks.done = !_tasks.done;
     tasks[_id] = _tasks;
+    emit TaskToggleDone(_id, _tasks.done);
   }
 }
